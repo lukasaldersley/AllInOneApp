@@ -8,7 +8,22 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <TextBox BorderThickness="0" IsReadOnly="True" IsHitTestVisible="False" Text="Überwachungskamera Fernsteuerung" Grid.Row="0"/>
+        <Button x:Name="ToggleState" Content="Verbindung mit Kamera herstellen" Click="ToggleState_Click" Grid.Row="2"/>
+        <Button x:Name="CheckStatus" Content="Status abrufen" Click="CheckStatus_Click" Grid.Row="4"/>
+        <ScrollViewer Grid.Row="6" IsHitTestVisible="False">
+            <TextBlock IsHitTestVisible="False" x:Name="OutputArea" TextWrapping="WrapWholeWords"/>
+        </ScrollViewer>
     </Grid>
 </Page>

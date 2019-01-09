@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace AllInOneApp
@@ -50,6 +42,10 @@ namespace AllInOneApp
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
+                //***********kennzeichnet code von: http://www.wintellect.com/devcenter/jprosise/handling-the-back-button-in-windows-10-uwp-apps
+                rootFrame.Navigated += OnNavigated;
+                //***********
+
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Zustand von zuvor angehaltener Anwendung laden
@@ -57,6 +53,17 @@ namespace AllInOneApp
 
                 // Den Frame im aktuellen Fenster platzieren
                 Window.Current.Content = rootFrame;
+
+                //***********
+                // Register a handler for BackRequested events and set the
+                // visibility of the Back button
+                SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
+
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                    rootFrame.CanGoBack ?
+                    AppViewBackButtonVisibility.Visible :
+                    AppViewBackButtonVisibility.Collapsed;
+                //***********
             }
 
             if (e.PrelaunchActivated == false)
@@ -83,6 +90,17 @@ namespace AllInOneApp
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
 
+        //***********
+        private void OnNavigated(object sender, NavigationEventArgs e)
+        {
+            // Each time a navigation event occurs, update the Back button's visibility
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                ((Frame)sender).CanGoBack ?
+                AppViewBackButtonVisibility.Visible :
+                AppViewBackButtonVisibility.Collapsed;
+        }
+        //***********
+
         /// <summary>
         /// Wird aufgerufen, wenn die Ausführung der Anwendung angehalten wird.  Der Anwendungszustand wird gespeichert,
         /// ohne zu wissen, ob die Anwendung beendet oder fortgesetzt wird und die Speicherinhalte dabei
@@ -95,6 +113,51 @@ namespace AllInOneApp
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Anwendungszustand speichern und alle Hintergrundaktivitäten beenden
             deferral.Complete();
+        }
+
+        //***********
+        private void OnBackRequested(object sender, BackRequestedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            if (rootFrame.CanGoBack)
+            {
+                e.Handled = true;
+                rootFrame.GoBack();
+            }
+        }
+        //***********
+
+        protected override void OnFileActivated(FileActivatedEventArgs args)
+        {
+            base.OnFileActivated(args);
+            var rootFrame = new Frame();
+
+
+            //***********kennzeichnet code von: http://www.wintellect.com/devcenter/jprosise/handling-the-back-button-in-windows-10-uwp-apps
+            rootFrame.Navigated += OnNavigated;
+            //***********
+            //***********
+            // Register a handler for BackRequested events and set the
+            // visibility of the Back button
+            SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
+
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                rootFrame.CanGoBack ?
+                AppViewBackButtonVisibility.Visible :
+                AppViewBackButtonVisibility.Collapsed;
+            //***********
+
+            if (args.Files[0].Name.EndsWith(".nav"))
+            {
+                rootFrame.Navigate(typeof(DriveSystemPage));
+            }
+            else
+            {
+                rootFrame.Navigate(typeof(TextEditorPage), args.Files[0] as StorageFile);
+            }
+            Window.Current.Content = rootFrame;
+            Window.Current.Activate();
         }
     }
 }

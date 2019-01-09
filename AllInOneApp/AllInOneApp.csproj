@@ -141,8 +141,8 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="NetworkInterface.cs" />
-    <Compile Include="PasswortManagerPage.xaml.cs">
-      <DependentUpon>PasswortManagerPage.xaml</DependentUpon>
+    <Compile Include="PasswordManagerPage.xaml.cs">
+      <DependentUpon>PasswordManagerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SensorPage.xaml.cs">
@@ -173,6 +173,20 @@
     <None Include="AllInOneApp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Auto.png" />
+    <Content Include="BMW-logo.png" />
+    <Content Include="BT_ICON.png" />
+    <Content Include="Garfield.png" />
+    <Content Include="logbook.png" />
+    <Content Include="LogoRAW.png" />
+    <Content Include="LogoRAW_FILL.png" />
+    <Content Include="MUSIC_ICON.png" />
+    <Content Include="MUSIC_ICON_ORIG.png" />
+    <Content Include="NAV_ICON.png" />
+    <Content Include="NAV_ICON_W8.png" />
+    <Content Include="OBD_ICON.png" />
+    <Content Include="OBD_ICON_old.png" />
+    <Content Include="padlock.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -181,6 +195,11 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="RADIO_ICON.png" />
+    <Content Include="Settings.png" />
+    <Content Include="Stundenplan.png" />
+    <Content Include="TextFile1.txt" />
+    <Content Include="to-do-list.bmp" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -211,7 +230,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PasswortManagerPage.xaml">
+    <Page Include="PasswordManagerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

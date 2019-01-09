@@ -8,7 +8,40 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="FolderNameTextBox" BorderThickness="0" IsHitTestVisible="False" IsReadOnly="True" Grid.Row="0" Text="Lorem Ipsum" FontSize="25" FontStyle="Italic"/>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel x:Name="ContentPanel">
+                <!--<Border BorderThickness="2" CornerRadius="15">
+                    <Grid GotFocus="Grid_GotFocus">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Text="FOLDER" IsHitTestVisible="False" IsReadOnly="True" Grid.Column="0" PointerPressed="Grid_PointerPressed"/>
+                        <StackPanel Orientation="Horizontal" Grid.Column="1">
+                            <AppBarButton Icon="Go">
+                            </AppBarButton>
+                            <AppBarButton Icon="Play"/>
+                            <AppBarButton Icon="Delete"/>
+                            <AppBarButton Icon="Save"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>-->
+            </StackPanel>
+        </ScrollViewer>
+        <CommandBar Grid.Row="2" x:Name="MainCommandBar">
+            <AppBarButton x:Name="AddFileButton" Click="AddFileButton_Click" Icon="Add" Label="Datei Hinzufügen"/>
+            <AppBarButton x:Name="LaunchFolderButton" Click="LaunchFolderButton_Click" Icon="Play" Label="Ordner im Explorer öffnen"/>
+            <AppBarButton x:Name="RefreshButton" Click="RefreshButton_Click" Icon="Refresh" Label="Neu Laden"/>
+            <AppBarButton x:Name="MultiSelectButton" Click="MultiSelectButton_Click" Icon="Bullets" Label="Mehrere Elemente Auswählen"/>
+            <AppBarButton x:Name="ExportAllButton" Click="ExportAllButton_Click" Icon="SaveLocal" Label="In Externen Ordner Kopieren"/>
+            <AppBarButton x:Name="DeleteAllButton" Click="DeleteAllButton_Click" Icon="Delete" Label="Dateien Löschen"/>
+        </CommandBar>
     </Grid>
 </Page>

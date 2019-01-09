@@ -8,7 +8,55 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-
-    </Grid>
+    <StackPanel>
+        <TextBox IsReadOnly="True" IsHitTestVisible="False" FontSize="20" Text="BMW-Zeitmanagement" FontStyle="Italic" BorderThickness="0"/>
+        <TextBox IsReadOnly="True" IsHitTestVisible="False" Text=" " BorderThickness="0"/>
+        <TextBox IsReadOnly="True" IsHitTestVisible="False" Text="Soll (Tag): 7" BorderThickness="0"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Text="Ist (Tag): " BorderThickness="0" IsHitTestVisible="False" IsReadOnly="True" Grid.Column="0"/>
+            <TextBox  x:Name="is_value_day" BorderThickness="0" IsHitTestVisible="False" IsReadOnly="True" Grid.Column="1"/>
+        </Grid>
+        <TextBox IsReadOnly="True" IsHitTestVisible="False" Text=" " BorderThickness="0"/>
+        <TextBox IsReadOnly="True" IsHitTestVisible="False" Text="Soll (Woche): 35" BorderThickness="0"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Text="Ist (Woche): " BorderThickness="0" IsHitTestVisible="False" IsReadOnly="True" Grid.Column="0"/>
+            <TextBox  x:Name="is_value_week" BorderThickness="0" IsHitTestVisible="False" IsReadOnly="True" Grid.Column="1"/>
+        </Grid>
+        <TextBox IsReadOnly="True" IsHitTestVisible="False" Text=" " BorderThickness="0"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Text="Saldo (Tag): " BorderThickness="0" IsHitTestVisible="False" IsReadOnly="True" Grid.Column="0"/>
+            <TextBox  x:Name="saldo_day" BorderThickness="0" IsHitTestVisible="False" IsReadOnly="True" Grid.Column="1"/>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Text="Saldo (Woche): " BorderThickness="0" IsHitTestVisible="False" IsReadOnly="True" Grid.Column="0"/>
+            <TextBox  x:Name="saldo_week" BorderThickness="0" IsHitTestVisible="False" IsReadOnly="True" Grid.Column="1"/>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Text="Saldo (Jahr): " BorderThickness="0" IsHitTestVisible="False" IsReadOnly="True" Grid.Column="0"/>
+            <TextBox  x:Name="saldo_year" BorderThickness="0" IsHitTestVisible="False" IsReadOnly="True" Grid.Column="1"/>
+        </Grid>
+        <TextBox IsReadOnly="True" IsHitTestVisible="False" Text=" " BorderThickness="0"/>
+        <TextBox IsReadOnly="True" IsHitTestVisible="False" Text=" " BorderThickness="0"/>
+        <Button x:Name="ActionButton" Content="Einstempeln" Click="ActionButton_Click"/>
+    </StackPanel>
 </Page>

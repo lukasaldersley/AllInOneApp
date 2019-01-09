@@ -5,10 +5,54 @@
     xmlns:local="using:AllInOneApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Windows10FallCreatorsUpdate="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 5)"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="NameBox" IsReadOnly="True" IsHitTestVisible="False" Grid.Column="0" IsTabStop="False"/>
+            <TextBox x:Name="StatusBox" IsReadOnly="True" IsHitTestVisible="False" Grid.Column="1" IsTabStop="False"/>
+        </Grid>
+        <ScrollViewer Grid.Row="1">
+            <TextBox x:Name="Workspace" FontFamily="Arial" FontSize="16" AcceptsReturn="True" TextWrapping="Wrap" TextChanging="Workspace_TextChanging"/>
+        </ScrollViewer>
+        <CommandBar Grid.Row="2">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton
+                    x:Name="OpenButton"
+                    Icon="OpenFile"
+                    Label="Datei Öffnen"
+                    Click="OpenButton_Click">
+                </AppBarButton>
+                <AppBarButton
+                    x:Name="SaveButton"
+                    Icon="Save"
+                    Label="Datei Speichern"
+                    Click="SaveButton_Click">
+                </AppBarButton>
+                <AppBarButton
+                    x:Name="SaveAsButton"
+                    Icon="SaveLocal"
+                    Label="Datei Speichern unter"
+                    Click="SaveAsButton_Click">
+                </AppBarButton>
+                <AppBarButton
+                    x:Name="NewButton"
+                    Icon="Add"
+                    Label="Neue Datei"
+                    Click="NewButton_Click">
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
     </Grid>
 </Page>

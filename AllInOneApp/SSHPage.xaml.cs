@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+﻿using Renci.SshNet;
+using System;
+using Windows.System;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // Die Elementvorlage "Leere Seite" wird unter https://go.microsoft.com/fwlink/?LinkId=234238 dokumentiert.
 
@@ -22,9 +13,48 @@ namespace AllInOneApp
     /// </summary>
     public sealed partial class SSHPage : Page
     {
+        private int status = 3;//3=> hostname; 2=> user; 1=> password; 0=> commands
+
+        private String hostname;
+        private String user;
+        private String password;
+        SshClient client;
+
         public SSHPage()
         {
             this.InitializeComponent();
+
+        }
+
+        private void Input_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case VirtualKey.Enter:
+                    {
+                        if (status == 3)
+                        {
+                            Println(Input.Text);
+                            hostname = Input.Text;
+                            Print("username: ");
+                        }
+                    }
+                    break;
+                default:
+                    {
+                        return;
+                    }
+            }
+        }
+
+        private void Println(String msg)
+        {
+            Output.Text += msg + "\r\n";
+        }
+
+        private void Print(String msg)
+        {
+            Output.Text += msg;
         }
     }
 }

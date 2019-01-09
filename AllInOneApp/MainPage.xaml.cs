@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // Die Elementvorlage "Leere Seite" wird unter https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x407 dokumentiert.
 
@@ -25,6 +14,58 @@ namespace AllInOneApp
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        private void NavigateToGarfieldPage_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(GarfieldPage));
+        }
+
+        private void NavigateToToDoListPage_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(ToDoListPage));
+        }
+
+        private void NavigateToSettingsPage_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SettingsPage));
+        }
+
+        private void NavigateToPasswordManagerPage_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(PasswordManagerPage));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var X = "Hallo Welt Lorem Ipsum dolor lkdfsjkhljkköjhgfugkukfshkjdfhakhgfiagäikjsfdhjsfglaihgföfPFÜÜÜA'wöefwuoauhwerigserhgl0".DivideToLength(5);
+            Debug.WriteLine(X);
+            //Frame.Navigate(typeof(FolderInspectionPage), StorageInterface.ROAMING_FOLDER);
+        }
+
+        private void NavigateToTextEditor_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(TextEditorPage), null);
+        }
+
+        private void NavigateToJobManagerPage_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(JobManagerPage));
+        }
+
+        private void NavigateToSensorPage_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SensorPage));
+        }
+
+        private void NavigateToDriveSystem_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(DriveSystemPage));
+        }
+
+        private void NavigateToSerialPage_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SerialPage));
         }
     }
 }

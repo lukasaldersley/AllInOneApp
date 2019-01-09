@@ -8,7 +8,13 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-
-    </Grid>
+    <ScrollViewer>
+        <StackPanel>
+            <Button x:Name="Sample" Click="Sample_Click" Content="Initialisieren" Margin="10" Height="100" Width="200"/>
+            <Button x:Name="startStop" Click="StartStop_Click" Content="Start/Stop" Margin="10" Height="100" Width="200"/>
+            <Button x:Name="pacer" Click="Pacer_Click" Content="Toggle Pace" Margin="10" Height="100" Width="200"/>
+            <TextBox x:Name="cnt" AcceptsReturn="False" IsHitTestVisible="False" IsReadOnly="True"/>
+            <TextBox x:Name="OUT" AcceptsReturn="True" IsHitTestVisible="False" IsReadOnly="True"/>
+        </StackPanel>
+    </ScrollViewer>
 </Page>

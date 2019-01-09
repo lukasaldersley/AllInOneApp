@@ -9,6 +9,15 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBox BorderThickness="0" Text="SSH-TERMINAL" IsReadOnly="True" IsHitTestVisible="False" Grid.Row="0" FontStyle="Italic" FontSize="20"/>
+        <ScrollViewer Grid.Row="1">
+            <TextBlock x:Name="Output"/>
+        </ScrollViewer>
+        <TextBox x:Name="Input" PlaceholderText="Eingabe:" KeyDown="Input_KeyDown" Grid.Row="2"/>
     </Grid>
 </Page>

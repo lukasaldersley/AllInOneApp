@@ -1,12 +1,195 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace AllInOneApp
 {
-    class DataTypeExtentions
+    static class DataTypeExtentions
     {
+        public static String[] DivideToLength(this String X, int length)
+        {
+            int t = (int)Math.Ceiling((double)X.Length / length);
+            Debug.WriteLine(X.Length);
+            Debug.WriteLine(length);
+            Debug.WriteLine(t);
+            String[] O = new String[t];
+            for (int i = 0; i < t; i++)
+            {
+                /*int e = ((i + 1) * length) - 1;
+                if (e >= X.Length)
+                {
+                    e = X.Length - 1;
+                }*/
+                if (i == t - 1)
+                {
+                    O[i] = X.Substring(i * length);
+                }
+                else
+                {
+                    O[i] = X.Substring(i * length, length);
+                }
+            }
+            return O;
+        }
+
+        public static void PrintStackTrace(this Exception e)
+        {
+            Debug.WriteLine("An Exception occurred");
+            Debug.WriteLine(e.Data);
+            Debug.WriteLine(e.HelpLink);
+            Debug.WriteLine(e.HResult);
+            Debug.WriteLine(e.InnerException);
+            Debug.WriteLine(e.Message);
+            Debug.WriteLine(e.Source);
+            Debug.WriteLine(e.StackTrace);
+            Debug.WriteLine(e.ToString());
+        }
+
+        public static String[] Split(this String toSplit, String splitWith)
+        {
+            return toSplit.Split(new string[] { splitWith }, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        public async static Task<StorageFile[]> GetStorageFileArray(this StorageFolder inputFolder)
+        {
+            IReadOnlyList<StorageFile> fileList = await inputFolder.GetFilesAsync();
+            IEnumerator<StorageFile> fileEnumerator = fileList.GetEnumerator();
+            StorageFile[] outputArray = new StorageFile[fileList.Count];
+            for (int i = 0; i < outputArray.Length; i++)
+            {
+                fileEnumerator.MoveNext();
+                outputArray[i] = fileEnumerator.Current;
+            }
+            return outputArray;
+        }
+
+        public async static Task<StorageFolder[]> GetStorageFolderArray(this StorageFolder inputFolder)
+        {
+            IReadOnlyList<StorageFolder> folderList = await inputFolder.GetFoldersAsync();
+            IEnumerator<StorageFolder> folderEnumerator = folderList.GetEnumerator();
+            StorageFolder[] outputArray = new StorageFolder[folderList.Count];
+            for (int i = 0; i < outputArray.Length; i++)
+            {
+                folderEnumerator.MoveNext();
+                outputArray[i] = folderEnumerator.Current;
+            }
+            return outputArray;
+        }
+
+        public async static Task CopyFolderContentsTo(this StorageFolder source, StorageFolder target)
+        {
+            StorageFolder[] folders = await GetStorageFolderArray(source);
+            for (int i = 0; i < folders.Length; i++)
+            {
+                await folders[i].CopyFolderContentsTo(await target.CreateFolderAsync(folders[i].Name, CreationCollisionOption.OpenIfExists));
+            }
+            StorageFile[] files = await GetStorageFileArray(source);
+            for (int i = 0; i < files.Length; i++)
+            {
+                await files[i].CopyAsync(target, files[i].Name, NameCollisionOption.ReplaceExisting);
+            }
+        }
+
+        public static String ToString(this byte[] input)
+        {
+            String result = "";
+            for (int i = 0; i < input.Length; i++)
+            {
+                result += (char)(input[i]);
+            }
+            return result;
+        }
+
+        public static char[] ToCharArray(this byte[] input)
+        {
+            char[] output = new char[input.Length];
+            for (int i = 0; i < input.Length; i++)
+            {
+                output[i] = (char)(input[i]);
+            }
+            return output;
+        }
+
+        public static String ToString(this char[] input)
+        {
+            String result = "";
+            for (int i = 0; i < input.Length; i++)
+            {
+                result += input[i];
+            }
+            return result;
+        }
+
+        public static byte[] ToByteArray(this char[] input)
+        {
+            byte[] output = new byte[input.Length];
+            for (int i = 0; i < input.Length; i++)
+            {
+                output[i] = (byte)(input[i]);
+            }
+            return output;
+        }
+
+        public static char[] ToCharArray(this String input)
+        {
+            return input.ToArray();
+        }
+
+        public static byte[] ToByteArray(this String input)
+        {
+            byte[] output = new byte[input.Length];
+            char[] inpt = input.ToArray();
+            for (int i = 0; i < input.Length; i++)
+            {
+                output[i] = (byte)(inpt[i]);
+            }
+            return output;
+        }
+
+        public static String ToFixedLength(this String input, int desiredLength)
+        {
+            char[] cArr = input.ToCharArray();
+            if (input.Length < desiredLength)
+            {
+                int counter = 0;
+                for (int i = input.Length; i < desiredLength; i++)
+                {
+                    if (counter == cArr.Length)
+                    {
+                        counter = 0;
+                    }
+                    input += cArr[counter];
+                    counter++;
+                }
+            }
+            else if (input.Length > desiredLength)
+            {
+                input = "";
+                for (int i = 0; i < desiredLength; i++)
+                {
+                    input += cArr[i];
+                }
+            }
+            return input;
+        }
+
+        public static String RandomAlphanumerical(this String s, int length)
+        {
+            Random random = new Random();
+            String randomString = "";
+            char[] availableChars = {
+                'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+            };
+            for (int i = 0; i < length; i++)
+            {
+                randomString += availableChars[((int)(random.NextDouble() * 61))];
+            }
+            return randomString;
+        }
     }
 }

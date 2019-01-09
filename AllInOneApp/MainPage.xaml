@@ -8,7 +8,30 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-
-    </Grid>
+    <ScrollViewer>
+        <StackPanel>
+            <!--<Button Content="fip" Click="Button_Click"/>-->
+            <Button x:Name="NavigateToGarfieldPage" Click="NavigateToGarfieldPage_Click" Margin="5">
+                <Image Source="Garfield.png" Height="100" Width="100"/>
+            </Button>
+            <Button x:Name="NavigateToToDoListPage" Click="NavigateToToDoListPage_Click" Margin="5">
+                <Image Source="to-do-list.bmp" Height="100" Width="100"/>
+            </Button>
+            <Button x:Name="NavigateToPasswordManagerPage" Click="NavigateToPasswordManagerPage_Click" Margin="5">
+                <Image Source="padlock.jpg" Height="100" Width="100"/>
+            </Button>
+            <Button x:Name="NavigateToSettingsPage" Click="NavigateToSettingsPage_Click" Margin="5">
+                <Image Source="Settings.png" Height="100" Width="100"/>
+            </Button>
+            <Button x:Name="NavigateToTextEditor" Click="NavigateToTextEditor_Click" Content="Text Editor" Margin="5"/>
+            <Button x:Name="NavigateToJobManagerPage" Click="NavigateToJobManagerPage_Click" Margin="5">
+                <Image Source="BMW-logo.png" Height="100" Width="100"/>
+            </Button>
+            <Button x:Name="NavigateToSensorPage" Click="NavigateToSensorPage_Click" Margin="5" Content="Sensorik/Logs"/>
+            <Button x:Name="NavigateToDriveSystem" Click="NavigateToDriveSystem_Click" Margin="5">
+                <Image Source="Auto.png" Height="100" Width="100"/>
+            </Button>
+            <Button x:Name="NavigateToSerialPage" Click="NavigateToSerialPage_Click" Margin="5" Content="Serial Page"/>
+        </StackPanel>
+    </ScrollViewer>
 </Page>
