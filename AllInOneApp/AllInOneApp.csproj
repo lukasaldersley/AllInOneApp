@@ -157,6 +157,7 @@
     <Compile Include="SSHPage.xaml.cs">
       <DependentUpon>SSHPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StorageInterface.cs" />
     <Compile Include="SystemInfo.cs" />
     <Compile Include="TextEditorPage.xaml.cs">
       <DependentUpon>TextEditorPage.xaml</DependentUpon>
