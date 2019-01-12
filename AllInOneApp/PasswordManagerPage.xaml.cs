@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI;
 using Windows.Storage.Streams;
 using Windows.Security.Cryptography;
+using Windows.System;
 
 // Die Elementvorlage "Leere Seite" wird unter https://go.microsoft.com/fwlink/?LinkId=234238 dokumentiert.
 
@@ -95,6 +96,10 @@ namespace AllInOneApp
 
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
+            await Logon();
+        }
+
+        private async Task Logon() {
             Key = CryptoInterface.GestAesKey(LoginPasswordBox.Password);
             LoginPasswordBox.Password = "";
             IBuffer A = await StorageInterface.ReadBufferFromRoamingFolder("PWM/A");
@@ -470,6 +475,14 @@ namespace AllInOneApp
         private async void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             await Refresh();
+        }
+
+        private async void LoginPasswordBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+            {
+                await Logon();
+            }
         }
     }
 }
