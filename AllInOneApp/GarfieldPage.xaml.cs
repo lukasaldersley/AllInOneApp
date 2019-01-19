@@ -5,6 +5,7 @@ using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
@@ -29,6 +30,27 @@ namespace AllInOneApp
             Navigate();
             Window.Current.CoreWindow.Dispatcher.AcceleratorKeyActivated += AccereratorKeyActivated;
             datePicker.DateChanged += DatePicker_DateChanged;
+            this.PointerWheelChanged += MouseWheelChanged;
+        }
+
+        private void MouseWheelChanged(object sender, PointerRoutedEventArgs e)
+        {
+            int mwd=e.GetCurrentPoint(null).Properties.MouseWheelDelta;
+            Debug.WriteLine(mwd);
+            if (mwd == -120 || mwd == 15240)
+            {
+                Debug.WriteLine("->");
+                NextDay();
+            }
+            else if (mwd == 120 || mwd == -15240)
+            {
+                Debug.WriteLine("<-");
+                PreviousDay();
+            }
+            else
+            {
+                Debug.WriteLine("WTF");
+            }
         }
 
         private void AccereratorKeyActivated(CoreDispatcher sender, AcceleratorKeyEventArgs args)

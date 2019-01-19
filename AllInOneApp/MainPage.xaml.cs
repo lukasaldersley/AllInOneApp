@@ -1,4 +1,7 @@
 ﻿using System.Diagnostics;
+using Windows.Foundation;
+using Windows.Graphics.Display;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -14,6 +17,35 @@ namespace AllInOneApp
         public MainPage()
         {
             this.InitializeComponent();
+            int spacing = 150;
+            Rect bounds = ApplicationView.GetForCurrentView().VisibleBounds;
+            double scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
+            Size size = new Size(bounds.Width * scaleFactor, bounds.Height * scaleFactor);
+            Debug.WriteLine(size.Width + "x" + size.Height);
+            Debug.WriteLine((int)(size.Width / spacing) + "x" + (int)(size.Height / spacing));
+            Debug.WriteLine(ApplicationView.GetForCurrentView().Orientation);
+            UIElement[] items = new UIElement[Stack.Children.Count];
+            Stack.Children.CopyTo(items,0);
+            int nrY = items.Length / (size.Width / spacing).ToIntCeil();
+            int nrX = (int)(size.Width / spacing);
+            int nextItem = 0;
+            Debug.WriteLine(items.Length);
+            Stack.Children.Clear();
+            for(int i = 0; i <= nrY; i++)
+            {
+                StackPanel sp = new StackPanel()
+                {
+                    Orientation = Orientation.Horizontal
+                };
+                for(int j = 0; j < nrX; j++)
+                {
+                    if (nextItem < items.Length)
+                    {
+                        sp.Children.Add(items[nextItem++]);
+                    }
+                }
+                Stack.Children.Add(sp);
+            }
         }
 
         private void NavigateToGarfieldPage_Click(object sender, RoutedEventArgs e)

@@ -9,6 +9,19 @@ namespace AllInOneApp
 {
     static class DataTypeExtentions
     {
+        public static int ToIntCeil(this Double inpt)
+        {
+            int x = (int)(inpt);
+            if (inpt - (double)x == 0.0)
+            {
+                return x;
+            }
+            else
+            {
+                return x + 1;
+            }
+        }
+
         public static String[] DivideToLength(this String X, int length)
         {
             int t = (int)Math.Ceiling((double)X.Length / length);

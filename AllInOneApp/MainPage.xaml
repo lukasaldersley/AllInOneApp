@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <ScrollViewer>
-        <StackPanel>
+        <StackPanel x:Name="Stack">
             <!--<Button Content="fip" Click="Button_Click"/>-->
             <Button x:Name="NavigateToGarfieldPage" Click="NavigateToGarfieldPage_Click" Margin="5">
                 <Image Source="Garfield.png" Height="100" Width="100"/>
