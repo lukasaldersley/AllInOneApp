@@ -140,6 +140,9 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MicrosoftBandSetupPage.xaml.cs">
+      <DependentUpon>MicrosoftBandSetupPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NetworkInterface.cs" />
     <Compile Include="PasswordManagerPage.xaml.cs">
       <DependentUpon>PasswordManagerPage.xaml</DependentUpon>
@@ -269,6 +272,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="MicrosoftBandSetupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PasswordManagerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -299,6 +306,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Band">
+      <Version>1.3.20628</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.3</Version>
     </PackageReference>

@@ -67,5 +67,10 @@ namespace AllInOneApp
         {
             Frame.Navigate(typeof(SerialPage));
         }
+
+        private void NavigateToMicrosoftBandSetupPage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

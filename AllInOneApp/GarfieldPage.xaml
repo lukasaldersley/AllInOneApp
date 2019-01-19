@@ -10,14 +10,16 @@
 
     <Grid x:Name="BaseGrid">
         <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0" x:Name="GarfieldPageTitle" HorizontalAlignment="Left" IsHitTestVisible="False" TextWrapping="Wrap" Text="GARFIELD" VerticalAlignment="Top" IsReadOnly="True" FontWeight="Bold" FontStyle="Italic" FontSize="20" BorderThickness="0"/>
+        <TextBox x:Name="FocusGrabber" Text="FUCK OFF" Grid.Row="0"/>
+        <TextBox Grid.Row="1" x:Name="GarfieldPageTitle" HorizontalAlignment="Left" IsHitTestVisible="False" TextWrapping="Wrap" Text="GARFIELD" VerticalAlignment="Top" IsReadOnly="True" FontWeight="Bold" FontStyle="Italic" FontSize="20" BorderThickness="0"/>
         <!--WebView Grid.Row="1" x:Name="displayComic" DefaultBackgroundColor="Black" Visibility="Collapsed"/-->
-        <Image Grid.Row="1" x:Name="ComicImage" Source="https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/2017/2017-10-10.gif"/>
-        <Grid Grid.Row="2">
+        <Image Grid.Row="2" x:Name="ComicImage" Source="https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/2017/2017-10-10.gif"/>
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <!--shuffle-->

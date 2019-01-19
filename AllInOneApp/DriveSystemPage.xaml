@@ -39,22 +39,64 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="NavigationSystemButton" Grid.Column="0" Grid.Row="0" Margin="25" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="NavigationSystemButton_Click">
-                <Image Source="NAV_ICON.png"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="NAV_ICON.png" Grid.Row="0"/>
+                    <TextBox IsHitTestVisible="False" IsReadOnly="True" Text="NAVI" FontSize="20" Grid.Row="1" HorizontalAlignment="Center" BorderThickness="0" Background="Transparent"/>
+                </Grid>
             </Button>
             <Button x:Name="RadioSystemButton" Grid.Column="1" Grid.Row="0" Margin="25" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="RadioSystemButton_Click">
-                <Image Source="RADIO_ICON.png"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="RADIO_ICON.png" Grid.Row="0"/>
+                    <TextBox IsHitTestVisible="False" IsReadOnly="True" Text="FM-RADIO" FontSize="20" Grid.Row="1" HorizontalAlignment="Center" BorderThickness="0" Background="Transparent"/>
+                </Grid>
             </Button>
             <Button x:Name="BluetoothMediaSystemButton" Grid.Column="0" Grid.Row="1" Margin="25" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="BluetoothMediaSystemButton_Click">
-                <Image Source="BT_ICON.png"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="BT_ICON.png" Grid.Row="0"/>
+                    <TextBox IsHitTestVisible="False" IsReadOnly="True" Text="BLUETOOTH-AUDIO" FontSize="20" Grid.Row="1" HorizontalAlignment="Center" BorderThickness="0" Background="Transparent"/>
+                </Grid>
             </Button>
             <Button x:Name="OBDSystemButton" Grid.Column="1" Grid.Row="1" Margin="25" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="OBDSystemButton_Click">
-                <Image Source="OBD_ICON.png"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="OBD_ICON.png" Grid.Row="0"/>
+                    <TextBox IsHitTestVisible="False" IsReadOnly="True" Text="OBD-DIAGNOSESYSTEM" FontSize="20" Grid.Row="1" HorizontalAlignment="Center" BorderThickness="0" Background="Transparent"/>
+                </Grid>
             </Button>
             <Button x:Name="AllInOneAppBaseSystemButton" Grid.Column="2" Grid.Row="0" Margin="25" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="AllInOneAppBaseSystemButton_Click">
-                <Image Source="LogoRAW.png"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="LogoRAW.png" Grid.Row="0"/>
+                    <TextBox IsHitTestVisible="False" IsReadOnly="True" Text="PC/M MENÜ" FontSize="20" Grid.Row="1" HorizontalAlignment="Center" BorderThickness="0" Background="Transparent"/>
+                </Grid>
             </Button>
             <Button x:Name="LocalMusicSystemButton" Click="LocalMusicSystemButton_Click" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="25">
-                <Image Source="MUSIC_ICON.png"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="MUSIC_ICON.png" Grid.Row="0"/>
+                    <TextBox IsHitTestVisible="False" IsReadOnly="True" Text="MUSIK-PLAYER" FontSize="20" Grid.Row="1" HorizontalAlignment="Center" BorderThickness="0" Background="Transparent"/>
+                </Grid>
             </Button>
         </Grid>
     </Grid>
