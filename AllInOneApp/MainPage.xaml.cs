@@ -17,7 +17,7 @@ namespace AllInOneApp
         public MainPage()
         {
             this.InitializeComponent();
-            int spacing = 150;
+            int spacing = 120;
             Rect bounds = ApplicationView.GetForCurrentView().VisibleBounds;
             double scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
             Size size = new Size(bounds.Width * scaleFactor, bounds.Height * scaleFactor);

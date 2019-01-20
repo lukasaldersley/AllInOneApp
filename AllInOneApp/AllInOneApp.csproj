@@ -218,18 +218,21 @@
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Auto.png" />
+    <Content Include="BM9_ICON.png" />
     <Content Include="BMW-logo.png" />
     <Content Include="BT_ICON.png" />
     <Content Include="Garfield.png" />
     <Content Include="logbook.png" />
     <Content Include="LogoRAW.png" />
     <Content Include="LogoRAW_FILL.png" />
+    <Content Include="LOG_ICON.png" />
     <Content Include="MUSIC_ICON.png" />
     <Content Include="MUSIC_ICON_ORIG.png" />
     <Content Include="NAV_ICON.png" />
     <Content Include="NAV_ICON_W8.png" />
     <Content Include="OBD_ICON.png" />
     <Content Include="OBD_ICON_old.png" />
+    <Content Include="OSZI_ICON.png" />
     <Content Include="padlock.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -238,9 +241,15 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="RADIO_ICON.png" />
+    <Content Include="RS232_ICON.png" />
+    <Content Include="RS232_ICON_2.png" />
     <Content Include="Settings.png" />
+    <Content Include="SHARED_RS232_ICON.png" />
     <Content Include="Stundenplan.png" />
+    <Content Include="TEMP_RAIN_ICON.png" />
     <Content Include="TextFile1.txt" />
+    <Content Include="TEXT_EDITOR_ICON.png" />
+    <Content Include="TEXT_EDITOR_ICON_0.png" />
     <Content Include="to-do-list.bmp" />
   </ItemGroup>
   <ItemGroup>

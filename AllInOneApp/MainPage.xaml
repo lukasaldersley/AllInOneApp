@@ -23,15 +23,21 @@
             <Button x:Name="NavigateToSettingsPage" Click="NavigateToSettingsPage_Click" Margin="5">
                 <Image Source="Settings.png" Height="100" Width="100"/>
             </Button>
-            <Button x:Name="NavigateToTextEditor" Click="NavigateToTextEditor_Click" Content="Text Editor" Margin="5"/>
+            <Button x:Name="NavigateToTextEditor" Click="NavigateToTextEditor_Click" Margin="5">
+                <Image Source="TEXT_EDITOR_ICON.png" Height="100" Width="100"/>
+            </Button>
             <Button x:Name="NavigateToJobManagerPage" Click="NavigateToJobManagerPage_Click" Margin="5">
                 <Image Source="BMW-logo.png" Height="100" Width="100"/>
             </Button>
-            <Button x:Name="NavigateToSensorPage" Click="NavigateToSensorPage_Click" Margin="5" Content="Sensorik/Logs"/>
+            <Button x:Name="NavigateToSensorPage" Click="NavigateToSensorPage_Click" Margin="5">
+                <Image Source="OSZI_ICON.png" Height="100" Width="100"/>
+            </Button>
             <Button x:Name="NavigateToDriveSystem" Click="NavigateToDriveSystem_Click" Margin="5">
                 <Image Source="Auto.png" Height="100" Width="100"/>
             </Button>
-            <Button x:Name="NavigateToSerialPage" Click="NavigateToSerialPage_Click" Margin="5" Content="Serial Page"/>
+            <Button x:Name="NavigateToSerialPage" Click="NavigateToSerialPage_Click" Margin="5">
+                <Image Source="SHARED_RS232_ICON.png" Height="100" Width="100"/>
+            </Button>
             <Button x:Name="NavigateToMicrosoftBandSetupPage" Click="NavigateToMicrosoftBandSetupPage_Click" Content="MS-Band Setup" Margin="5"/>
         </StackPanel>
     </ScrollViewer>
