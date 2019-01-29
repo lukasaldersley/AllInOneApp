@@ -31,5 +31,10 @@ namespace AllInOneApp
             string Token = await StorageInterface.PickExternalStorageFolder();
             await StorageInterface.WriteToLocalFolder("Storage.Garfield.token", Token);
         }
+
+        private void DriveSystemSettings_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

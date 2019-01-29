@@ -122,6 +122,9 @@
     <Compile Include="CameraControlPage.xaml.cs">
       <DependentUpon>CameraControlPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CarStatusLogPage.xaml.cs">
+      <DependentUpon>CarStatusLogPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CryptoInterface.cs" />
     <Compile Include="DATA.cs" />
     <Compile Include="DataTypeExtentions.cs" />
@@ -258,6 +261,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="CameraControlPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CarStatusLogPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

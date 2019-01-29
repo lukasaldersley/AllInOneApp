@@ -18,7 +18,11 @@
         <TextBox x:Name="FocusGrabber" Text="FUCK OFF" Grid.Row="0"/>
         <TextBox Grid.Row="1" x:Name="GarfieldPageTitle" HorizontalAlignment="Left" IsHitTestVisible="False" TextWrapping="Wrap" Text="GARFIELD" VerticalAlignment="Top" IsReadOnly="True" FontWeight="Bold" FontStyle="Italic" FontSize="20" BorderThickness="0"/>
         <!--WebView Grid.Row="1" x:Name="displayComic" DefaultBackgroundColor="Black" Visibility="Collapsed"/-->
-        <Image Grid.Row="2" x:Name="ComicImage" Source="https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/2017/2017-10-10.gif"/>
+        <ScrollViewer DoubleTapped="ScrollViewer_DoubleTapped" x:Name="scrollViewer" Grid.Row="2" ZoomMode="Enabled" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MinZoomFactor="1">
+            <Grid>
+                <Image x:Name="ComicImage" Source="https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/2017/2017-10-10.gif" Width="{Binding ElementName=scrollViewer, Path=ViewportWidth}" Height="{Binding ElementName=scrollViewer, Path=ViewportHeight}"/>
+            </Grid>
+        </ScrollViewer>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

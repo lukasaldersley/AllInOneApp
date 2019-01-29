@@ -20,7 +20,10 @@ namespace AllInOneApp
             int spacing = 120;
             Rect bounds = ApplicationView.GetForCurrentView().VisibleBounds;
             double scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
-            Size size = new Size(bounds.Width * scaleFactor, bounds.Height * scaleFactor);
+            Debug.WriteLine(scaleFactor);
+            Size displayResolution = new Size(bounds.Width * scaleFactor, bounds.Height * scaleFactor);
+            Debug.WriteLine(displayResolution);
+            Size size = new Size(bounds.Width, bounds.Height);
             Debug.WriteLine(size.Width + "x" + size.Height);
             Debug.WriteLine((int)(size.Width / spacing) + "x" + (int)(size.Height / spacing));
             Debug.WriteLine(ApplicationView.GetForCurrentView().Orientation);
@@ -103,6 +106,11 @@ namespace AllInOneApp
         private void NavigateToMicrosoftBandSetupPage_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void NavigateToFuellingPage_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CarStatusLogPage));
         }
     }
 }

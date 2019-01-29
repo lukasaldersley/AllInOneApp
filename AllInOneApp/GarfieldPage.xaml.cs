@@ -163,6 +163,8 @@ namespace AllInOneApp
         {
             //displayComic.Navigate(new Uri("https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/" + date.ToString("yyyy") + "/" + date.ToString("yyyy-MM-dd") + ".gif"));
             ComicImage.Source = new BitmapImage(new Uri("https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/" + date.ToString("yyyy") + "/" + date.ToString("yyyy-MM-dd") + ".gif"));
+            //scrollViewer.ScrollToVerticalOffset(scrollViewer.ScrollableHeight / 2);
+            //scrollViewer.ScrollToHorizontalOffset(scrollViewer.ScrollableWidth / 2);
         }
 
         private void DayBeforeButton_Click(object sender, RoutedEventArgs e)
@@ -189,6 +191,28 @@ namespace AllInOneApp
             Debug.WriteLine(days);
             int newDays = (int)(new Random().NextDouble() * (days + 1));
             return startOfTime.AddDays(newDays);
+        }
+
+        private async void ScrollViewer_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            var scrollViewer = sender as ScrollViewer;
+            var doubleTapPoint = e.GetPosition(scrollViewer);
+
+            if (scrollViewer.ZoomFactor != 1)
+            {
+                scrollViewer.ZoomToFactor(1);
+            }
+            else if (scrollViewer.ZoomFactor == 1)
+            {
+                scrollViewer.ZoomToFactor(2);
+
+                var dispatcher = Window.Current.CoreWindow.Dispatcher;
+                await dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+                {
+                    scrollViewer.ScrollToHorizontalOffset(doubleTapPoint.X);
+                    scrollViewer.ScrollToVerticalOffset(doubleTapPoint.Y);
+                });
+            }
         }
     }
 }
