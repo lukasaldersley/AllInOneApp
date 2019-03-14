@@ -1,6 +1,10 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using Windows.ApplicationModel.Core;
+using Windows.Devices.Sensors;
 using Windows.Foundation;
 using Windows.Graphics.Display;
+using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -14,9 +18,33 @@ namespace AllInOneApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private SimpleOrientationSensor _simpleorientation;
+        UIElement[] items;
+
         public MainPage()
         {
             this.InitializeComponent();
+            items = new UIElement[Stack.Children.Count];
+            Stack.Children.CopyTo(items, 0);
+            // Put hits in the Constructor
+            _simpleorientation = SimpleOrientationSensor.GetDefault();
+            if (_simpleorientation != null)
+            {
+                _simpleorientation.OrientationChanged += new TypedEventHandler<SimpleOrientationSensor, SimpleOrientationSensorOrientationChangedEventArgs>(OrientationChanged);
+            }
+            Setup();
+        }
+        // Event function
+        private async void OrientationChanged(object sender, SimpleOrientationSensorOrientationChangedEventArgs e)
+        {
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+            {
+                //Setup();
+            });
+        }
+
+        void Setup()
+        {
             int spacing = 120;
             Rect bounds = ApplicationView.GetForCurrentView().VisibleBounds;
             double scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
@@ -27,20 +55,19 @@ namespace AllInOneApp
             Debug.WriteLine(size.Width + "x" + size.Height);
             Debug.WriteLine((int)(size.Width / spacing) + "x" + (int)(size.Height / spacing));
             Debug.WriteLine(ApplicationView.GetForCurrentView().Orientation);
-            UIElement[] items = new UIElement[Stack.Children.Count];
-            Stack.Children.CopyTo(items,0);
+
             int nrY = items.Length / (size.Width / spacing).ToIntCeil();
             int nrX = (int)(size.Width / spacing);
             int nextItem = 0;
             Debug.WriteLine(items.Length);
             Stack.Children.Clear();
-            for(int i = 0; i <= nrY; i++)
+            for (int i = 0; i <= nrY; i++)
             {
                 StackPanel sp = new StackPanel()
                 {
                     Orientation = Orientation.Horizontal
                 };
-                for(int j = 0; j < nrX; j++)
+                for (int j = 0; j < nrX; j++)
                 {
                     if (nextItem < items.Length)
                     {
