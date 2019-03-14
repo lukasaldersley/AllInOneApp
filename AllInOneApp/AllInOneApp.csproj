@@ -146,6 +146,9 @@
     <Compile Include="MicrosoftBandSetupPage.xaml.cs">
       <DependentUpon>MicrosoftBandSetupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MusicPage.xaml.cs">
+      <DependentUpon>MusicPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NetworkInterface.cs" />
     <Compile Include="PasswordManagerPage.xaml.cs">
       <DependentUpon>PasswordManagerPage.xaml</DependentUpon>
@@ -249,6 +252,7 @@
     <Content Include="Settings.png" />
     <Content Include="SHARED_RS232_ICON.png" />
     <Content Include="Stundenplan.png" />
+    <Content Include="TANK_ICON.png" />
     <Content Include="TEMP_RAIN_ICON.png" />
     <Content Include="TextFile1.txt" />
     <Content Include="TEXT_EDITOR_ICON.png" />
@@ -289,6 +293,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MicrosoftBandSetupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MusicPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

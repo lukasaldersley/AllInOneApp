@@ -96,7 +96,7 @@ namespace AllInOneApp
 
         private async void AddEntryButton_Click(object sender, RoutedEventArgs e)
         {
-            await StorageInterface.WriteToRoamingFolder("PoloTanken.csv",await StorageInterface.ReadFromRoamingFolder("PoloTanken.csv") + await InputTextDialogAsync("Neue Batankung"));
+            await StorageInterface.WriteToRoamingFolder("PoloTanken.csv",await StorageInterface.ReadFromRoamingFolder("PoloTanken.csv") +"\r\n"+ await InputTextDialogAsync("Neue Batankung"));
             await Refresh();
         }
     }

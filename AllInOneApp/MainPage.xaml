@@ -39,7 +39,9 @@
                 <Image Source="SHARED_RS232_ICON.png" Height="100" Width="100"/>
             </Button>
             <Button x:Name="NavigateToMicrosoftBandSetupPage" Click="NavigateToMicrosoftBandSetupPage_Click" Content="MS-Band Setup" Margin="5"/>
-            <Button x:Name="NavigateToFuellingPage" Click="NavigateToFuellingPage_Click" Content="TANKEN" Margin="5"/>
+            <Button x:Name="NavigateToFuellingPage" Click="NavigateToFuellingPage_Click" Margin="5">
+                <Image Source="TANK_ICON.png" Height="100" Width="100"/>
+            </Button>
         </StackPanel>
     </ScrollViewer>
 </Page>
