@@ -42,6 +42,7 @@
             <Button x:Name="NavigateToFuellingPage" Click="NavigateToFuellingPage_Click" Margin="5">
                 <Image Source="TANK_ICON.png" Height="100" Width="100"/>
             </Button>
+            <Button x:Name="NavigateToDiaShowPage" Click="NavigateToDiaShowPage_Click" Margin="5" Content="Diashow Zeltlager 2019"/>
         </StackPanel>
     </ScrollViewer>
 </Page>

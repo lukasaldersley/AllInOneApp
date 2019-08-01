@@ -128,6 +128,9 @@
     <Compile Include="CryptoInterface.cs" />
     <Compile Include="DATA.cs" />
     <Compile Include="DataTypeExtentions.cs" />
+    <Compile Include="DiaShowPage.xaml.cs">
+      <DependentUpon>DiaShowPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DriveSystemPage.xaml.cs">
       <DependentUpon>DriveSystemPage.xaml</DependentUpon>
     </Compile>
@@ -152,6 +155,9 @@
     <Compile Include="NetworkInterface.cs" />
     <Compile Include="PasswordManagerPage.xaml.cs">
       <DependentUpon>PasswordManagerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PasteBinPage.xaml.cs">
+      <DependentUpon>PasteBinPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SensorPage.xaml.cs">
@@ -272,6 +278,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DiaShowPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DriveSystemPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -301,6 +311,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PasswordManagerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PasteBinPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -337,7 +351,7 @@
       <Version>6.2.8</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
-      <Version>5.1.0</Version>
+      <Version>5.1.1</Version>
     </PackageReference>
     <PackageReference Include="SSH.NET">
       <Version>2016.1.0</Version>

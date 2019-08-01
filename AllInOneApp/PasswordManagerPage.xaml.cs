@@ -1,14 +1,14 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Windows.Security.Cryptography;
+using Windows.Security.Cryptography.Core;
+using Windows.Storage.Streams;
+using Windows.System;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using System.Diagnostics;
-using Windows.Security.Cryptography.Core;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Media;
-using Windows.UI;
-using Windows.Storage.Streams;
-using Windows.Security.Cryptography;
-using Windows.System;
 
 // Die Elementvorlage "Leere Seite" wird unter https://go.microsoft.com/fwlink/?LinkId=234238 dokumentiert.
 
@@ -23,32 +23,31 @@ namespace AllInOneApp
         public static readonly String INTRASPLIT = "$$##§§##$$";
         public static readonly String INTERSPLIT = "##!!||!!##";
 
-        Border newBorder;
-        Grid newGrid;
-        ColumnDefinition newLeft;
-        ColumnDefinition newRight;
-        StackPanel newLeftPanel;
-        TextBox newOverview;
-        TextBox newUsername;
-        TextBox newPassword;
-        StackPanel newRightPanel;
-        AppBarButton newDelete;
-        AppBarButton newEditOk;
+        private Border newBorder;
+        private Grid newGrid;
+        private ColumnDefinition newLeft;
+        private ColumnDefinition newRight;
+        private StackPanel newLeftPanel;
+        private TextBox newOverview;
+        private TextBox newUsername;
+        private TextBox newPassword;
+        private StackPanel newRightPanel;
+        private AppBarButton newDelete;
+        private AppBarButton newEditOk;
+        private Border[] border;
+        private Grid[] grid;
+        private ColumnDefinition[] left;
+        private ColumnDefinition[] right;
+        private StackPanel[] leftPanel;
+        private TextBox[] overview;
+        private TextBox[] username;
+        private TextBox[] password;
+        private StackPanel[] rightPanel;
+        private AppBarButton[] delete;
+        private AppBarButton[] editOk;
+        private Boolean[] isEditing;
 
-        Border[] border;
-        Grid[] grid;
-        ColumnDefinition[] left;
-        ColumnDefinition[] right;
-        StackPanel[] leftPanel;
-        TextBox[] overview;
-        TextBox[] username;
-        TextBox[] password;
-        StackPanel[] rightPanel;
-        AppBarButton[] delete;
-        AppBarButton[] editOk;
-        Boolean[] isEditing;
-
-        int index = 0;
+        private int index = 0;
 
         public PasswordManagerPage()
         {
@@ -99,7 +98,8 @@ namespace AllInOneApp
             await Logon();
         }
 
-        private async Task Logon() {
+        private async Task Logon()
+        {
             Key = CryptoInterface.GestAesKey(LoginPasswordBox.Password);
             LoginPasswordBox.Password = "";
             IBuffer A = await StorageInterface.ReadBufferFromRoamingFolder("PWM/A");
@@ -226,7 +226,7 @@ namespace AllInOneApp
 
                 password[i] = new TextBox()
                 {
-                    IsHitTestVisible = false,
+                    IsHitTestVisible = true,
                     AcceptsReturn = true,
                     TextWrapping = TextWrapping.Wrap,
                     Text = X[2]

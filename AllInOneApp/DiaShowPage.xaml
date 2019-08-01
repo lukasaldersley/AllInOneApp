@@ -1,0 +1,18 @@
+﻿<Page
+    x:Class="AllInOneApp.DiaShowPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AllInOneApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="SelectFolderButton" Click="SelectFolderButton_Click" Content="Ordner wählen" Margin="5" Background="Black"/>
+            <Button x:Name="PauseButton" Content="START" Click="PauseButton_Click" Margin="5"/>
+        </StackPanel>
+        <Image x:Name="ComicImage" Source="file:///C:/Pictures\Garfield\1979-05-05.gif"/>
+    </StackPanel>
+</Page>

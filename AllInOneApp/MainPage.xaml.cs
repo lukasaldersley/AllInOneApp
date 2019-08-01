@@ -139,5 +139,10 @@ namespace AllInOneApp
         {
             Frame.Navigate(typeof(CarStatusLogPage));
         }
+
+        private void NavigateToDiaShowPage_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(DiaShowPage));
+        }
     }
 }

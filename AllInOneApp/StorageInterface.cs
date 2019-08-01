@@ -7,6 +7,8 @@ using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace AllInOneApp
 {
@@ -575,7 +577,15 @@ namespace AllInOneApp
             await storageFile.DeleteAsync();
         }
 
-
+        internal async static Task<ImageSource> GetImageSourceFromStorageFile(StorageFile sf)
+        {
+            using (var randomAccessStream = await sf.OpenAsync(FileAccessMode.Read))
+            {
+                var result = new BitmapImage();
+                await result.SetSourceAsync(randomAccessStream);
+                return result;
+            }
+        }
 
 
 
