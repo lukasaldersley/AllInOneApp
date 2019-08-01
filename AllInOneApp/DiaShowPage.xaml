@@ -8,11 +8,36 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel>
-        <StackPanel Orientation="Horizontal">
+
+    <Grid x:Name="BaseGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="FocusGrabber" Text="Dies sollte unsichtbar sein..." Grid.Row="0"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
             <Button x:Name="SelectFolderButton" Click="SelectFolderButton_Click" Content="Ordner wählen" Margin="5" Background="Black"/>
-            <Button x:Name="PauseButton" Content="START" Click="PauseButton_Click" Margin="5"/>
+            <Button x:Name="PauseButton" Content="START" Click="PauseButton_Click" Margin="5" IsEnabled="False"/>
         </StackPanel>
-        <Image x:Name="ComicImage" Source="file:///C:/Pictures\Garfield\1979-05-05.gif"/>
-    </StackPanel>
+        <ScrollViewer DoubleTapped="ScrollViewer_DoubleTapped" x:Name="scrollViewer" Grid.Row="2" ZoomMode="Enabled" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MinZoomFactor="1">
+            <Grid>
+                <Image x:Name="ComicImage" Width="{Binding ElementName=scrollViewer, Path=ViewportWidth}" Height="{Binding ElementName=scrollViewer, Path=ViewportHeight}"/>
+                <!--<Image x:Name="ComicImage" Source="https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/2017/2017-10-10.gif" Width="{Binding ElementName=scrollViewer, Path=ViewportWidth}" Height="{Binding ElementName=scrollViewer, Path=ViewportHeight}"/>-->
+            </Grid>
+        </ScrollViewer>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <!--shuffle-->
+                <ColumnDefinition Width="*"/>
+                <!--placeLeft day after-->
+                <ColumnDefinition Width="Auto"/>
+                <!--download-->
+            </Grid.ColumnDefinitions>
+            <AppBarButton x:Name="dayBeforeButton" HorizontalAlignment="Right" Icon="Back" Click="DayBeforeButton_Click" Grid.Column="1"/>
+            <AppBarButton x:Name="dayAfterButton" HorizontalAlignment="Left" Icon="Forward" Click="DayAfterButton_Click" Grid.Column="3"/>
+        </Grid>
+    </Grid>
 </Page>
