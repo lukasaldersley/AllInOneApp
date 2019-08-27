@@ -44,6 +44,12 @@ namespace AllInOneApp
             return await new HttpClient().GetByteArrayAsync(DATA.GarfieldURI+date.ToString("yyyy") + "/" + date.ToString("yyyy-MM-dd") + ".gif");
         }
 
+        internal async static Task<byte[]> DownloadXKCD(String id)
+        {
+            Debug.WriteLine("Downloading XKCD: https://"+id);
+            return await new HttpClient().GetByteArrayAsync("https://"+id);
+        }
+
         internal static async Task<String> Download(String src)
         {
             src = src.Replace("\r\n", "");

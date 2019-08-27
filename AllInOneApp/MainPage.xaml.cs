@@ -144,5 +144,10 @@ namespace AllInOneApp
         {
             Frame.Navigate(typeof(DiaShowPage));
         }
+
+        private void NavigateToXKCDPage_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(XKCDPage));
+        }
     }
 }

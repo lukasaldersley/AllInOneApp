@@ -181,6 +181,9 @@
       <DependentUpon>ToDoListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserInteraction.cs" />
+    <Compile Include="XKCDPage.xaml.cs">
+      <DependentUpon>XKCDPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -264,6 +267,7 @@
     <Content Include="TEXT_EDITOR_ICON.png" />
     <Content Include="TEXT_EDITOR_ICON_0.png" />
     <Content Include="to-do-list.bmp" />
+    <Content Include="XKCD_ICON.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -339,6 +343,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ToDoListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XKCDPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
