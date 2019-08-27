@@ -108,7 +108,7 @@ namespace AllInOneApp
         {
             await GetData("START");
         }
-
+        
         private async Task GetData(String id)
         {
             if (id == "START")
@@ -127,49 +127,78 @@ namespace AllInOneApp
             {
                 id = "https://xkcd.com/" + id;
             }
+            int SI, EI, nuSI, nuEI, puSI, puEI, deSI, deEI, iulSI, iulEI, iuSI, iuEI, cidSI, cidEI, tiSI, tiEI;
+            String OData = "";
+            String data = "";
             try
             {
-                String data = (await NetworkInterface.Download(id));
+                data = (await NetworkInterface.Download(id));
+                OData = data;
                 //Debug.WriteLine("##" + data + "##");
-                int SI = data.IndexOf("<div id=\"ctitle\">");
-                int EI = data.IndexOf("Image URL (for hotlinking/embedding)");
+                SI = data.IndexOf("<div id=\"ctitle\">");
+                EI = data.IndexOf("Image URL (for hotlinking/embedding)");
                 data = data.Substring(SI, EI - SI);
-                int nuSI = data.IndexOf("rel=\"next\" href=\"") + 17;
-                int nuEI = data.IndexOf("\" accesskey=\"n");
+                nuSI = data.IndexOf("rel=\"next\" href=\"") + 17;
+                nuEI = data.IndexOf("\" accesskey=\"n");
                 nextUrl = data.Substring(nuSI, nuEI - nuSI);
                 nextUrl = nextUrl.Replace("/", "");
-                int puSI = data.IndexOf("rel=\"prev\" href=\"") + 17;
-                int puEI = data.IndexOf("\" accesskey=\"p");
+                puSI = data.IndexOf("rel=\"prev\" href=\"") + 17;
+                puEI = data.IndexOf("\" accesskey=\"p");
                 prevUrl = data.Substring(puSI, puEI - puSI);
                 prevUrl = prevUrl.Replace("/", "");
-                int deSI = data.IndexOf("\" title=\"") + 9;
-                int deEI = data.IndexOf("\" alt=\"");
+                deSI = data.IndexOf("\" title=\"") + 9;
+                deEI = data.IndexOf("\" alt=\"");
                 desc = data.Substring(deSI, deEI - deSI);
-                title = data.Substring(17, data.IndexOf("</div>") - 17);
-                int iulSI = data.IndexOf("\" srcset=\"//") + 12;
-                int iulEI = data.IndexOf("\"/>");//remove last stuff
+                tiSI = 17;
+                tiEI = data.IndexOf("</div>");
+                title = data.Substring(tiSI, tiEI - tiSI);
+                iulSI = data.IndexOf("\" srcset=\"//") + 12;
+                iulEI = data.IndexOf("\"/>");//remove last stuff
                 imgUrlLarge = data.Substring(iulSI, iulEI - iulSI);
                 imgUrlLarge = imgUrlLarge.Substring(0, imgUrlLarge.IndexOf(" "));
-                int iuSI = data.IndexOf("<img src=\"//") + 12;
-                int iuEI = data.IndexOf("\" title=\"");
+                iuSI = data.IndexOf("<img src=\"//") + 12;
+                iuEI = data.IndexOf("\" title=\"");
                 imgUrl = data.Substring(iuSI, iuEI - iuSI);
-                int cidSI = data.IndexOf("to this comic: ") + 30;
-                int cidEI = data.LastIndexOf("<br");
+                cidSI = data.IndexOf("to this comic: ") + 30;
+                cidEI = data.LastIndexOf("<br");
                 currentID = data.Substring(cidSI, cidEI - cidSI);
                 currentID = currentID.Replace("/", "");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 e.PrintStackTrace();
-                Debug.WriteLine(id);
-                Debug.WriteLine("!!" + data + "!!");
+                Debug.WriteLine("ID: \t" + id);
                 Debug.WriteLine("");
-                Debug.WriteLine(prevUrl);
-                Debug.WriteLine(nextUrl);
-                Debug.WriteLine(desc);
-                Debug.WriteLine(title);
-                Debug.WriteLine(imgUrl);
-                Debug.WriteLine(imgUrlLarge);
+                Debug.WriteLine("");
+                Debug.WriteLine("[O_DATA_START]" + OData + "[O_DATA_END]");
+                Debug.WriteLine("");
+                Debug.WriteLine("");
+                Debug.WriteLine("[DATA_START]" + data + "[DATA_END]");
+                Debug.WriteLine("");
+                Debug.WriteLine("");
+                Debug.WriteLine("Prev: \t" + prevUrl);
+                Debug.WriteLine("\t\t" + puSI);
+                Debug.WriteLine("\t\t" + puEI);
+                Debug.WriteLine("");
+                Debug.WriteLine("Next: \t" + nextUrl);
+                Debug.WriteLine("\t\t" + nuSI);
+                Debug.WriteLine("\t\t" + nuEI);
+                Debug.WriteLine("");
+                Debug.WriteLine("desc: \t" + desc);
+                Debug.WriteLine("\t\t" + deSI);
+                Debug.WriteLine("\t\t" + deEI);
+                Debug.WriteLine("");
+                Debug.WriteLine("title: \t" + title);
+                Debug.WriteLine("\t\t" + tiSI);
+                Debug.WriteLine("\t\t" + tiEI);
+                Debug.WriteLine("");
+                Debug.WriteLine("img: \t" + imgUrl);
+                Debug.WriteLine("\t\t" + iuSI);
+                Debug.WriteLine("\t\t" + iuEI);
+                Debug.WriteLine("");
+                Debug.WriteLine("imgL: \t" + imgUrlLarge);
+                Debug.WriteLine("\t\t" + iulSI);
+                Debug.WriteLine("\t\t" + iulEI);
             }
         }
 
