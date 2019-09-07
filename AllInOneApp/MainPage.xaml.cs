@@ -19,28 +19,68 @@ namespace AllInOneApp
     public sealed partial class MainPage : Page
     {
         private SimpleOrientationSensor _simpleorientation;
-        UIElement[] items;
+        private UIElement[] items;
+        private DispatcherTimer ResizeDelayTimer = new DispatcherTimer();
+        private int ResizeDelayTimerTicks = 0;
+        private int ResizeDelayTimerMaximum = 5;//5*50ms = 250ms
 
         public MainPage()
         {
             this.InitializeComponent();
             items = new UIElement[Stack.Children.Count];
             Stack.Children.CopyTo(items, 0);
-            // Put hits in the Constructor
-            _simpleorientation = SimpleOrientationSensor.GetDefault();
+            ResizeDelayTimer.Tick += ResizeDelayTimer_Tick;
+            ResizeDelayTimer.Interval = new TimeSpan(0, 0, 0, 0, 50);
+            // Das ganze SimpleOrientationSensor zeug war ein experiment, aber ich glaube, ich brauche das nicht mehr. Ich lass es im Commit falls ich nochmal damit experimentieren will.
+            //Es ist aber vollkommen unabhängig vom rest, kann also bedenkenlos entfernt werden.
+            /*_simpleorientation = SimpleOrientationSensor.GetDefault();
             if (_simpleorientation != null)
             {
                 _simpleorientation.OrientationChanged += new TypedEventHandler<SimpleOrientationSensor, SimpleOrientationSensorOrientationChangedEventArgs>(OrientationChanged);
-            }
+            }*/
+            Window.Current.SizeChanged += Current_SizeChanged;
             Setup();
         }
-        // Event function
+
+        private void ResizeDelayTimer_Tick(object sender, object e)
+        {
+            ResizeDelayTimerTicks++;
+            if (ResizeDelayTimerTicks >= ResizeDelayTimerMaximum)
+            {
+                ResizeDelayTimer.Stop();
+                ResizeDelayTimerTicks = 0;
+                Debug.WriteLine("Actually resizing");
+                Setup(true);
+            }
+        }
+
+        private void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)
+        {
+            Debug.WriteLine("Window.Current.SizeChanged Fired");
+            ResizeDelayTimerTicks = 0;
+            if (!ResizeDelayTimer.IsEnabled)
+            {
+                ResizeDelayTimer.Start();
+            }
+        }
+
+        /*// Event function
         private async void OrientationChanged(object sender, SimpleOrientationSensorOrientationChangedEventArgs e)
         {
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
             {
+                Debug.WriteLine("SimpleOrientationSensor Fired");
                 //Setup();
             });
+        }*/
+
+        void Setup(bool isResize)
+        {
+            for(int i = 0; i < Stack.Children.Count; i++)
+            {
+                ((StackPanel)(Stack.Children[i])).Children.Clear();
+            }
+            Setup();
         }
 
         void Setup()
@@ -55,9 +95,11 @@ namespace AllInOneApp
             Debug.WriteLine(size.Width + "x" + size.Height);
             Debug.WriteLine((int)(size.Width / spacing) + "x" + (int)(size.Height / spacing));
             Debug.WriteLine(ApplicationView.GetForCurrentView().Orientation);
+            
 
-            int nrY = items.Length / (size.Width / spacing).ToIntCeil();
+            //int nrY = items.Length / (size.Height / spacing).ToIntCeil();
             int nrX = (int)(size.Width / spacing);
+            int nrY = (items.Length / (double)nrX).ToIntCeil();
             int nextItem = 0;
             Debug.WriteLine(items.Length);
             Stack.Children.Clear();
@@ -71,7 +113,7 @@ namespace AllInOneApp
                 {
                     if (nextItem < items.Length)
                     {
-                        sp.Children.Add(items[nextItem++]);
+                        sp.Children.Add(items[nextItem++]);//elements are already children of something
                     }
                 }
                 Stack.Children.Add(sp);

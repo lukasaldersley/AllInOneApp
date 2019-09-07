@@ -22,6 +22,11 @@ namespace AllInOneApp
             }
         }
 
+        public static String GetHexString(this String input)
+        {
+            return "\\x"+BitConverter.ToString(input.ToByteArray()).Replace("-", "\\x");
+        }
+
         public static String[] DivideToLength(this String X, int length)
         {
             int t = (int)Math.Ceiling((double)X.Length / length);

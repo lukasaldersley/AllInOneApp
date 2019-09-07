@@ -70,6 +70,7 @@ namespace AllInOneApp
                 MODE_LOGIN.Visibility = Visibility.Visible;
                 MODE_SETUP.Visibility = MODE_REGULAR.Visibility = MODE_REGULAR_BAR.Visibility = Visibility.Collapsed;
             }
+            LoginPasswordBox.KeyDown += LoginPasswordBox_KeyDown;
         }
 
         private void SetupPasswordBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
@@ -104,11 +105,15 @@ namespace AllInOneApp
             LoginPasswordBox.Password = "";
             IBuffer A = await StorageInterface.ReadBufferFromRoamingFolder("PWM/A");
             IBuffer B = await StorageInterface.ReadBufferFromRoamingFolder("PWM/B");
+            //Debug.WriteLine("Up to here I believe this to be OK");
+            //Debug.WriteLine(LoginPasswordBox.Password.GetHexString());
+            //Debug.WriteLine(Key);
             IBuffer EA = CryptoInterface.EncryptAes(Key, A);
+            //Debug.WriteLine("Now this could be unreachable code");
             if (!CryptographicBuffer.Compare(B, EA))//Falsches Passwort, da die testfiles nicht zampassen
             {
                 Debug.WriteLine("FALSCHES PASSWORT");
-                await UserInteraction.ShowDialogAsync("INFORMAtiON", "Falsches Passwort!");
+                await UserInteraction.ShowDialogAsync("INFORMATION", "Falsches Passwort!");
                 return;
             }
             Debug.WriteLine("HAVE DONE SETUP WITH PASSWORD");
@@ -481,6 +486,7 @@ namespace AllInOneApp
         {
             if (e.Key == VirtualKey.Enter)
             {
+                LoginPasswordBox.KeyDown -= LoginPasswordBox_KeyDown;
                 await Logon();
             }
         }

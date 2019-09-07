@@ -14,6 +14,9 @@
             <Button x:Name="NavigateToGarfieldPage" Click="NavigateToGarfieldPage_Click" Margin="5">
                 <Image Source="Garfield.png" Height="100" Width="100"/>
             </Button>
+            <Button x:Name="NavigateToXKCDPage" Click="NavigateToXKCDPage_Click" Margin="5">
+                <Image Source="XKCD_ICON.jpg" Height="100" Width="100"/>
+            </Button>
             <Button x:Name="NavigateToToDoListPage" Click="NavigateToToDoListPage_Click" Margin="5">
                 <Image Source="to-do-list.bmp" Height="100" Width="100"/>
             </Button>
@@ -43,9 +46,6 @@
                 <Image Source="TANK_ICON.png" Height="100" Width="100"/>
             </Button>
             <Button x:Name="NavigateToDiaShowPage" Click="NavigateToDiaShowPage_Click" Margin="5" Content="Diashow Zeltlager 2019"/>
-            <Button x:Name="NavigateToXKCDPage" Click="NavigateToXKCDPage_Click" Margin="5">
-                <Image Source="XKCD_ICON.jpg" Height="100" Width="100"/>
-            </Button>
         </StackPanel>
     </ScrollViewer>
 </Page>

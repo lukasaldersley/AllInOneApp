@@ -12,22 +12,36 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBox x:Name="FocusGrabber" Text="FUCK OFF" Grid.Row="0"/>
         <TextBox Grid.Row="1" x:Name="XKCDPageTitle" HorizontalAlignment="Left" IsHitTestVisible="False" TextWrapping="Wrap" Text="XKCD" VerticalAlignment="Top" IsReadOnly="True" FontWeight="Bold" FontStyle="Italic" FontSize="20" BorderThickness="0"/>
         <!--WebView Grid.Row="1" x:Name="displayComic" DefaultBackgroundColor="Black" Visibility="Collapsed"/-->
-        <TextBox IsHitTestVisible="False" IsReadOnly="True" BorderThickness="0" x:Name="titleBox" Text="Speed and Danger" Grid.Row="2" FontSize="32"/>
-        <ScrollViewer DoubleTapped="ScrollViewer_DoubleTapped" x:Name="scrollViewer" Grid.Row="3" ZoomMode="Enabled" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MinZoomFactor="1">
-            <Grid>
-                <Image x:Name="ComicImage" Source="https://imgs.xkcd.com/comics/speed_and_danger_2x.png" Width="{Binding ElementName=scrollViewer, Path=ViewportWidth}" Height="{Binding ElementName=scrollViewer, Path=ViewportHeight}"/>
+        <Grid x:Name="basePanel" Grid.Row="2">
+            <!--<Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions> -->
+            <Grid x:Name="nativePanel">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBox IsHitTestVisible="False" IsReadOnly="True" BorderThickness="0" x:Name="titleBox" Text="Speed and Danger" Grid.Row="0" FontSize="32"/>
+                <ScrollViewer DoubleTapped="ScrollViewer_DoubleTapped" x:Name="scrollViewer" Grid.Row="1" ZoomMode="Enabled" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MinZoomFactor="1">
+                    <Grid>
+                        <Image x:Name="ComicImage" Source="https://imgs.xkcd.com/comics/speed_and_danger_2x.png" Width="{Binding ElementName=scrollViewer, Path=ViewportWidth}" Height="{Binding ElementName=scrollViewer, Path=ViewportHeight}"/>
+                    </Grid>
+                </ScrollViewer>
+                <TextBox TextWrapping="Wrap" IsHitTestVisible="False" IsReadOnly="True" BorderThickness="0" x:Name="descriptionBox" Grid.Row="2" FontSize="24" Text="NASCAR removed the passenger seats because drivers hated how astronauts kept riding along with them and loudly announcing &quot;Ahh, what a nice and relaxing drive.&quot;" AcceptsReturn="True"/>
             </Grid>
-        </ScrollViewer>
-        <TextBox TextWrapping="Wrap" IsHitTestVisible="False" IsReadOnly="True" BorderThickness="0" x:Name="descriptionBox" Grid.Row="4" FontSize="24" Text="NASCAR removed the passenger seats because drivers hated how astronauts kept riding along with them and loudly announcing &quot;Ahh, what a nice and relaxing drive.&quot;" AcceptsReturn="True"/>
-        <Grid Grid.Row="5">
+            <Grid x:Name="webPanel" Visibility="Collapsed">
+                <WebView x:Name="WebImage" Source="https://xkcd.com/1701"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <!--shuffle-->
