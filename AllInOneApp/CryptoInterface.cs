@@ -140,6 +140,10 @@ namespace AllInOneApp
 
         private static String CreateFixedlengthString(int length, String str)
         {
+            if (str.Length == 0)
+            {
+                return "";
+            }
             char[] cArr = str.ToCharArray();
             if (str.Length < length)
             {

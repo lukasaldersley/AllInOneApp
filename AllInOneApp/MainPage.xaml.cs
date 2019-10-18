@@ -191,5 +191,15 @@ namespace AllInOneApp
         {
             Frame.Navigate(typeof(XKCDPage));
         }
+
+        private void NavigateToWebframeTestPage_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(RaspberryPiWebframe));
+        }
+
+        private async void TestServer_Click(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine(await ClintServerMethods.SendDataAndRecieveAnswer("localhost", 1337, "TEST REQUEST"));
+        }
     }
 }

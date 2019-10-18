@@ -484,6 +484,7 @@ namespace AllInOneApp
 
         private async void LoginPasswordBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
         {
+            e.Handled = true;
             if (e.Key == VirtualKey.Enter)
             {
                 LoginPasswordBox.KeyDown -= LoginPasswordBox_KeyDown;

@@ -22,6 +22,33 @@ namespace AllInOneApp
             }
         }
 
+        public static String ToAsciiString(this byte[] input, bool respectAsciiControlChars = false)
+        {
+
+            String result = "";
+            if (respectAsciiControlChars)
+            {
+                for (int i = 0; i < input.Length; i++)
+                {
+                    if (input[i] <= 0x7f)
+                    {
+                        result += (char)(input[i]);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < input.Length; i++)
+                {
+                    if (input[i] >= 0x20 && input[i] <= 0x7e)
+                    {
+                        result += (char)(input[i]);
+                    }
+                }
+            }
+            return result;
+        }
+
         public static String GetHexString(this String input)
         {
             return "\\x"+BitConverter.ToString(input.ToByteArray()).Replace("-", "\\x");
@@ -51,6 +78,47 @@ namespace AllInOneApp
                 }
             }
             return O;
+        }
+
+        public static byte[] GetByteQuartetFromInt(this int length)
+        {
+            byte[] result = { 0, 0, 0, 0 };
+            int temporaryCopyOfLength = length;
+            temporaryCopyOfLength >>= 24;
+            result[0] = (byte)temporaryCopyOfLength;
+            length -= (temporaryCopyOfLength << 24);
+
+            temporaryCopyOfLength = length;
+            temporaryCopyOfLength >>= 16;
+            result[1] = (byte)temporaryCopyOfLength;
+            length -= (temporaryCopyOfLength << 16);
+
+            temporaryCopyOfLength = length;
+            temporaryCopyOfLength >>= 8;
+            result[2] = (byte)temporaryCopyOfLength;
+            length -= (temporaryCopyOfLength << 8);
+
+            temporaryCopyOfLength = length;
+            result[3] = (byte)temporaryCopyOfLength;
+            return result;
+        }
+
+        /// <summary>
+        /// this method takes an array of three bytes and converts them into an integer.
+        /// I need to do this because I can only Send/Receive byte arrays but want to transmit the length of my message beforehand to prevent buffer overruns
+        /// </summary>
+        /// <param name="quartet"></param>
+        /// <returns></returns>
+        public static int GetIntFromByteQuartet(this byte[] quartet)
+        {
+            int len = quartet[0];
+            len <<= 8;
+            len += quartet[1];
+            len <<= 8;
+            len += quartet[2];
+            len <<= 8;
+            len += quartet[3];
+            return len;
         }
 
         public static void PrintStackTrace(this Exception e)
@@ -156,10 +224,16 @@ namespace AllInOneApp
             return input.ToArray();
         }
 
+        /// <summary>
+        /// This method takes a String and returns the bytes the String is made of as an array.
+        /// This is probably horribly inefficient, but I don't really care for now.
+        /// </summary>
+        /// <param name="input">String to be converted to a byte array</param>
+        /// <returns> the byte array representing the input String</returns>
         public static byte[] ToByteArray(this String input)
         {
             byte[] output = new byte[input.Length];
-            char[] inpt = input.ToArray();
+            char[] inpt = input.ToCharArray();
             for (int i = 0; i < input.Length; i++)
             {
                 output[i] = (byte)(inpt[i]);

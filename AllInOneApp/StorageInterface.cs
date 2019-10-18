@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
@@ -12,7 +13,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace AllInOneApp
 {
-    class StorageInterface
+    static class StorageInterface
     {
         private static StorageFolder BaseFolder;
         public static StorageFolder LOCAL_FOLDER = ApplicationData.Current.LocalFolder;
@@ -207,6 +208,17 @@ namespace AllInOneApp
 
 
 
+        internal static async Task<byte[]> GetBytes(this StorageFile input)
+        {
+            byte[] arr = null;
+            using IRandomAccessStreamWithContentType stream = await input.OpenReadAsync();
+            arr = new byte[stream.Size];
+            using DataReader reader = new DataReader(stream);
+            await reader.LoadAsync((uint)arr.Length);
+            reader.ReadBytes(arr);
+            return arr;
+        }
+
         internal static async Task<String> ReadFromStorageFile(StorageFile sf)
         {
             return await FileIO.ReadTextAsync(sf);
@@ -239,7 +251,7 @@ namespace AllInOneApp
 
 
 
-        private static async Task<StorageFile> NavigateFileSystem(int folderType, String targetName, int collisionOption,StorageFolder specialFolder=null)
+        private static async Task<StorageFile> NavigateFileSystem(int folderType, String targetName, int collisionOption, StorageFolder specialFolder = null)
         {
             Debug.WriteLine("STARTING");
             StorageFolder storageFolder;
@@ -253,7 +265,7 @@ namespace AllInOneApp
                 else
                 {
                     storageFolder = specialFolder;
-                    
+
                 }
             }
             else if (folderType == BASE)
@@ -297,7 +309,7 @@ namespace AllInOneApp
                 Token = await PickExternalStorageFolder();
                 if (Token == null || Token.Equals(""))//Full-On FAIL => Just give up and exit, but notify the user
                 {
-                    await UserInteraction.ShowDialogAsync("ERROR","Unable to load required resources.\n App will be closed.");
+                    await UserInteraction.ShowDialogAsync("ERROR", "Unable to load required resources.\n App will be closed.");
                     ForceTerminateApp();
                 }
             }
@@ -522,7 +534,7 @@ namespace AllInOneApp
             await FileIO.AppendTextAsync(storageFile, content);
         }
 
-        internal async static Task DeleteFromKnownFolder(String fileName,String FolderToken)
+        internal async static Task DeleteFromKnownFolder(String fileName, String FolderToken)
         {
             StorageFolder storageFolder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(FolderToken);
             if (storageFolder == null)
