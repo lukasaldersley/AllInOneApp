@@ -41,13 +41,13 @@ namespace AllInOneApp
         internal async static Task<byte[]> DownloadGarfield(DateTimeOffset date)
         {
             Debug.WriteLine("Downloading Garfield: " + DATA.GarfieldURI + date.ToString("yyyy") + "/" + date.ToString("yyyy-MM-dd") + ".gif");
-            return await new HttpClient().GetByteArrayAsync(DATA.GarfieldURI+date.ToString("yyyy") + "/" + date.ToString("yyyy-MM-dd") + ".gif");
+            return await new HttpClient().GetByteArrayAsync(DATA.GarfieldURI + date.ToString("yyyy") + "/" + date.ToString("yyyy-MM-dd") + ".gif");
         }
 
         internal async static Task<byte[]> DownloadXKCD(String id)
         {
-            Debug.WriteLine("Downloading XKCD: https://"+id);
-            return await new HttpClient().GetByteArrayAsync("https://"+id);
+            Debug.WriteLine("Downloading XKCD: https://" + id);
+            return await new HttpClient().GetByteArrayAsync("https://" + id);
         }
 
         internal static async Task<String> Download(String src)
@@ -83,7 +83,7 @@ namespace AllInOneApp
             }
         }
 
-        public static String TX_RX_TCP(String command,String ip,int port)
+        public static String TX_RX_TCP(String command, String ip, int port)
         {
             try
             {

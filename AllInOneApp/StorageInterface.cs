@@ -53,6 +53,16 @@ namespace AllInOneApp
             return Token;
         }
 
+        internal async static Task<StorageFile> GetStorageFileFromLocalStorage(string fileName)
+        {
+            return await NavigateFileSystem(LOCAL, fileName, OPEN);
+        }
+
+        internal async static Task<StorageFile> GetStorageFileFromRoamingStorage(string fileName)
+        {
+            return await NavigateFileSystem(ROAMING, fileName, OPEN);
+        }
+
         internal async static Task<String> PickExternalStorageFile_OpenFile()
         {
             FileOpenPicker foPicker = new FileOpenPicker()

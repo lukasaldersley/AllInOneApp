@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AllInOneApp
 {
-    class ClintServerMethods
+    class ClintServerMethods///ALLES VERALTET => NICHT MEHR 1 byte flags und 3 byte lenght sondern 4 byte flags und 4 byte length
     {
         public async static Task<String> SendDataAndRecieveAnswer(String hostname, int port, String dataToSend)
         {
@@ -29,7 +29,7 @@ namespace AllInOneApp
 
             ///Before I send the actual data I want to send one byte reserved if I ever want to have a byte as signal-flag or something
             ///and then three bytes containing the lenght of the message, so the reciever knows how much data to expect (no buffer overruns).
-            ///24 bit length field is probably WAY overkill, but 6 bit length field would only gibe me a 65kB maximum message length
+            ///24 bit length field is probably WAY overkill, but 16 bit length field would only gibe me a 65kB maximum message length
             byte reservedForFutureUse = 0x00;
             transmissionStream.WriteByte(reservedForFutureUse);
 

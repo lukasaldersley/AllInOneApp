@@ -50,6 +50,19 @@ namespace AllInOneApp
             Refresh().GetAwaiter();
         }
 
+        private async Task Upload()
+        {
+            await ServerInterface.UploadFile(await StorageInterface.GetStorageFileFromLocalStorage("ToDo.list"),"/home/aio/AIO/ToDo.list");
+        }
+
+        private async Task Download()
+        {
+            ServerInterface.ServerPacket sp = ServerInterface.ReadFile("/home/aio/AIO/ToDo.list");
+            if (sp.Flags[1] == ServerInterface.ACK) {
+                await StorageInterface.WriteBytesToLocalFolder("ToDo.list",sp.Message);
+            }
+        }
+
         private void Init()
         {
             newBorder = new Border()
@@ -136,9 +149,10 @@ namespace AllInOneApp
         {
             newEditOk.Click -= StoreNewEntry;
             newDelete.Click -= CancelNewEntry;
-            cumulatedData = await StorageInterface.ReadFromRoamingFolder("ToDo.list");
+            cumulatedData = await StorageInterface.ReadFromLocalFolder("ToDo.list");
             cumulatedData = newOverview.Text + INTRASPLIT + newDetails.Text + INTERSPLIT + cumulatedData;
-            await StorageInterface.WriteToRoamingFolder("ToDo.list", cumulatedData);
+            await StorageInterface.WriteToLocalFolder("ToDo.list", cumulatedData);
+            await Upload();
             await Refresh();
         }
 
@@ -146,11 +160,12 @@ namespace AllInOneApp
         {
             Stack.Children.Clear();
             Init();
-
-            cumulatedData = await StorageInterface.ReadFromRoamingFolder("ToDo.list");
+            await Download();
+            cumulatedData = await StorageInterface.ReadFromLocalFolder("ToDo.list");
             if (cumulatedData == null)
             {
-                await StorageInterface.WriteToRoamingFolder("ToDo.list", "");
+                await StorageInterface.WriteToLocalFolder("ToDo.list", "");
+                await Upload();
             }
             String[] entries = cumulatedData.Split(INTERSPLIT);
 
@@ -328,7 +343,8 @@ namespace AllInOneApp
                     //DO NOTHING THE EXCEPTION PROBABLY HAS BEEN CAUSED BECAUSE THERE WAS NO DATA SO THE REFRESH METHOD JUST SKIPPED THIS DATASET
                 }
             }
-            await StorageInterface.WriteToRoamingFolder("ToDo.list", contentsToSTore);
+            await StorageInterface.WriteToLocalFolder("ToDo.list", contentsToSTore);
+            await Upload();
             await Refresh();
         }
 
