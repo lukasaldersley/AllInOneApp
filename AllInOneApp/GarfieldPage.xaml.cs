@@ -120,6 +120,7 @@ namespace AllInOneApp
             {
                 e.PrintStackTrace();
                 UserInteraction.ShowToast("ERROR! Could not save file.","Garfield");
+                return;
             }
             UserInteraction.ShowToast("Comic has successfully been saved", "Garfield");
         }

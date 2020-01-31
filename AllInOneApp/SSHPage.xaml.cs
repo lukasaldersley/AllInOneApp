@@ -1,5 +1,6 @@
 ﻿using Renci.SshNet;
 using System;
+using System.Diagnostics;
 using Windows.System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -17,17 +18,22 @@ namespace AllInOneApp
 
         private String hostname;
         private String user;
-        private String password;
+        private string password;
         SshClient client;
 
         public SSHPage()
         {
             this.InitializeComponent();
+            user = "dummy";
+            password = "dummy";
+            String dummy = user + password+hostname;
+            Debug.WriteLine(dummy);
 
         }
 
         private void Input_KeyDown(object sender, KeyRoutedEventArgs e)
         {
+            if (user == "" || password == "") { }
             switch (e.Key)
             {
                 case VirtualKey.Enter:

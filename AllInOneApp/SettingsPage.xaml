@@ -12,6 +12,7 @@
         <Button x:Name="InspectRoaming" Content="Show RoamingFolder" Click="InspectRoaming_Click" Margin="5"/>
         <Button x:Name="InspectLocal" Content="Show LocalFolder" Click="InspectLocal_Click" Margin="5"/>
         <Button x:Name="ChangeGarfieldFolder" Content="Change Garfield Output Folder" Click="ChangeGarfieldFolder_Click" Margin="5"/>
+        <Button x:Name="ChangeXKCDFolder" Content="Change XKCD Output folder" Click="ChangeXKCDFolder_Click" Margin="5"/>
         <Button x:Name="DriveSystemSettings" Content="DriveSystemSettings" Click="DriveSystemSettings_Click" Margin="5"/>
     </StackPanel>
 </Page>

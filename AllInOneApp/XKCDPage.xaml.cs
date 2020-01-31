@@ -18,7 +18,7 @@ namespace AllInOneApp
     /// </summary>
     public sealed partial class XKCDPage : Page
     {
-        String data = "";
+        private string data = "";
         private string nextUrl;
         private string prevUrl;
         private string desc;
@@ -175,6 +175,7 @@ namespace AllInOneApp
             {
                 e.PrintStackTrace();
                 UserInteraction.ShowToast("ERROR! Could not save file.", "XKCD");
+                return;
             }
             UserInteraction.ShowToast("Comic has successfully been saved", "XKCD");
         }

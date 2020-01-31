@@ -56,8 +56,9 @@ namespace AllInOneApp
                         availableSelection.Items.Add(new TextBox() { IsReadOnly = true, IsHitTestVisible = false, Text = info.Name + " (" + sd.PortName + ")" });
                         sd.Dispose();
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
+                        if (shouldBeReading) { }//nur um die warning zu unterdrücken
                         //ex.PrintStackTrace();
                         //Log("EXC");
                     }

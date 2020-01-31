@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+
 // Die Elementvorlage "Leere Seite" wird unter https://go.microsoft.com/fwlink/?LinkId=234238 dokumentiert.
 
 namespace AllInOneApp
@@ -23,6 +24,9 @@ namespace AllInOneApp
     /// </summary>
     public sealed partial class CarStatusLogPage : Page
     {
+
+        private const int KM = 8000;
+        private const int MONTHS = 9;
         public CarStatusLogPage()
         {
             this.InitializeComponent();
@@ -92,6 +96,12 @@ namespace AllInOneApp
             TotalEuroBox.Text = cost.ToString();
             TotalLiterBox.Text = liter.ToString();
             TotalAvgBox.Text = (100 * liter / km).ToString();
+
+            DateTime start = new DateTime(2019, 11, 6, 15, 0, 0);
+            DateTime now = DateTime.Now;
+            TimeSpan diff = now - start;
+            double allowedKm = (KM * 12.0* diff.TotalSeconds) / ( 24*3600* MONTHS *365.25);
+            maxKmBox.Text = allowedKm.ToString();
         }
 
         private async void AddEntryButton_Click(object sender, RoutedEventArgs e)

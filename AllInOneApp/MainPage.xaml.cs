@@ -18,7 +18,7 @@ namespace AllInOneApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private SimpleOrientationSensor _simpleorientation;
+        //private SimpleOrientationSensor _simpleorientation;
         private UIElement[] items;
         private DispatcherTimer ResizeDelayTimer = new DispatcherTimer();
         private int ResizeDelayTimerTicks = 0;
@@ -31,7 +31,7 @@ namespace AllInOneApp
             Stack.Children.CopyTo(items, 0);
             ResizeDelayTimer.Tick += ResizeDelayTimer_Tick;
             ResizeDelayTimer.Interval = new TimeSpan(0, 0, 0, 0, 50);
-            // Das ganze SimpleOrientationSensor zeug war ein experiment, aber ich glaube, ich brauche das nicht mehr. Ich lass es im Commit falls ich nochmal damit experimentieren will.
+            // Das ganze SimpleOrientationSensor zeug war ein experiment, aber ich glaube, ich brauche das nicht mehr. Ich lass es im comment falls ich nochmal damit experimentieren will.
             //Es ist aber vollkommen unabhängig vom rest, kann also bedenkenlos entfernt werden.
             /*_simpleorientation = SimpleOrientationSensor.GetDefault();
             if (_simpleorientation != null)
@@ -199,7 +199,16 @@ namespace AllInOneApp
 
         private async void TestServer_Click(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine(await ClintServerMethods.SendDataAndRecieveAnswer("localhost", 1337, "TEST REQUEST"));
+            try
+            {
+                //Debug.WriteLine(await ClintServerMethods.SendDataAndRecieveAnswer("localhost", 1337, "TEST REQUEST"));
+                await ServerInterface.UploadFile(await StorageInterface.GetStorageFileFromToken(await StorageInterface.PickExternalStorageFile_OpenFile()), "/CODE/IMG.png");// "C:\\Users\\alder\\Desktop\\IMG.png", "localhost");
+                                                                                                                                                                             //ServerInterface.ReadFile("invalidTestFile");//if reading a non-existent file I get 0x15 (NAK) in flags[1]
+            }
+            catch(Exception ex)
+            {
+                ex.PrintStackTrace();
+            }
         }
     }
 }

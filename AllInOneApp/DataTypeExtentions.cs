@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 
@@ -132,6 +133,16 @@ namespace AllInOneApp
             Debug.WriteLine(e.Source);
             Debug.WriteLine(e.StackTrace);
             Debug.WriteLine(e.ToString());
+        }
+
+        public static byte[] ToUTF8ByteArray(this String input)
+        {
+            return Encoding.UTF8.GetBytes(input);
+        }
+
+        public static String ToUTF8String(this byte[] input)
+        {
+            return Encoding.UTF8.GetString(input);
         }
 
         public static String[] Split(this String toSplit, String splitWith)

@@ -13,18 +13,18 @@ namespace AllInOneApp
     public sealed partial class SensorPage : Page
     {
         private Accelerometer acc;
-        private ActivitySensor act;
+        //private ActivitySensor act;
         private Altimeter alt;
         private Barometer baro;
         private Compass comp;
         private Gyrometer gyro;
-        private HingeAngleSensor has;
+        //private HingeAngleSensor has;
         private Inclinometer inc;
-        private LightSensor ls;
+        //private LightSensor ls;
         private Magnetometer mm;
         private OrientationSensor os;
-        private Pedometer pm;
-        private ProximitySensor ps;
+        //private Pedometer pm;
+        //private ProximitySensor ps;
         private SimpleOrientationSensor sos;
         private string Token;
         private bool logging;
